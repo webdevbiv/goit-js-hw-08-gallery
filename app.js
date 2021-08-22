@@ -96,9 +96,7 @@ createItem(galleryItems)
 const anchors = document.querySelector('.gallery__link')
 
 list.addEventListener('click', (e) => {
-  console.log(e.currentTarget);
-  console.log(e.target.nodeName);
-  console.log(e.target)
+
   if (e.target.nodeName === "IMG") {
     modal.classList.add('is-open')
     modalImg.setAttribute('src', e.target.dataset.source)
@@ -107,9 +105,7 @@ list.addEventListener('click', (e) => {
 })
 
 modal.addEventListener('click', (e) => {
-  console.log(e.currentTarget);
-  console.log(e.target.nodeName);
-  console.log(e.target)
+
 if (e.target.nodeName === "BUTTON") {
     modal.classList.remove('is-open')
   }
@@ -120,8 +116,6 @@ if (e.target.classList.contains('lightbox__overlay')) {
 
 
 window.addEventListener('keydown', (e) => {
-  console.log(e.code);
-  console.log(e.key);
   if (e.code === 'Escape') {
     modal.classList.remove('is-open')
   }
