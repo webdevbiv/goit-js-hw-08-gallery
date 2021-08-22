@@ -102,6 +102,7 @@ list.addEventListener('click', (e) => {
   if (e.target.nodeName === "IMG") {
     modal.classList.add('is-open')
     modalImg.setAttribute('src', e.target.dataset.source)
+    modalImg.setAttribute('alt', e.target.alt)
   }
 })
 
