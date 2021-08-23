@@ -95,7 +95,7 @@ function createNewListMap() {
   function createNewItem(item) {
     const newItem = document.createElement('li')
     newItem.classList.add('gallery__item')
-    const newAnchor = document.createElement('data')
+    const newAnchor = document.createElement('a')
     newAnchor.classList.add('gallery__link')
     newAnchor.setAttribute('href', item.original)
     const newImg = document.createElement('img')
@@ -112,6 +112,14 @@ function createNewListMap() {
 }
 createNewListMap()
 
+list.addEventListener('click', (e) => {
+  e.preventDefault()
+  if (e.target.nodeName === "A") {
+    modal.classList.add('is-open')
+    modalImg.setAttribute('src', e.target.dataset.source)
+    modalImg.setAttribute('alt', e.target.alt)
+  }
+})
 
 list.addEventListener('click', (e) => {
   if (e.target.nodeName === "IMG") {
