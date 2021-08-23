@@ -64,39 +64,56 @@ const galleryItems = [
   },
 ];
 
-
-
 const list = document.querySelector('.gallery')
 const modal = document.querySelector('.lightbox')
 const modalImg = document.querySelector('.lightbox__image')
+const anchors = document.querySelector('.gallery__link')
 
-function createItem(item) {
-  item.forEach(item => {
+// function createNewList() {
+//   function createNewItem(item) {
+//     item.forEach(item => {
+//       const newItem = document.createElement('li')
+//       newItem.classList.add('gallery__item')
+//       const newAnchor = document.createElement('data')
+//       newAnchor.classList.add('gallery__link')
+//       newAnchor.setAttribute('href', item.original)
+//       const newImg = document.createElement('img')
+//       newImg.classList.add('gallery__image')
+//       newImg.setAttribute('src', item.preview)
+//       newImg.setAttribute('data-source', item.original)
+//       newImg.setAttribute('alt', item.description)
+//       newAnchor.append(newImg)
+//       newItem.append(newAnchor)
+//       list.append(newItem)
+//     })
+//   }
+//   createNewItem(galleryItems)
+// }
+// createNewList()
+
+function createNewListMap() {
+  function createNewItem(item) {
     const newItem = document.createElement('li')
     newItem.classList.add('gallery__item')
-    // console.log(newItem);
     const newAnchor = document.createElement('data')
     newAnchor.classList.add('gallery__link')
     newAnchor.setAttribute('href', item.original)
-    // console.log(newAnchor);
     const newImg = document.createElement('img')
     newImg.classList.add('gallery__image')
     newImg.setAttribute('src', item.preview)
     newImg.setAttribute('data-source', item.original)
     newImg.setAttribute('alt', item.description)
-    
     newAnchor.append(newImg)
     newItem.append(newAnchor)
-    // console.log(newItem);
-    list.append(newItem)
-  })
+    return newItem
+  }
+  const createNewList = galleryItems.map(createNewItem)
+  list.append(...createNewList)
 }
-createItem(galleryItems)
+createNewListMap()
 
-const anchors = document.querySelector('.gallery__link')
 
 list.addEventListener('click', (e) => {
-
   if (e.target.nodeName === "IMG") {
     modal.classList.add('is-open')
     modalImg.setAttribute('src', e.target.dataset.source)
@@ -105,7 +122,6 @@ list.addEventListener('click', (e) => {
 })
 
 modal.addEventListener('click', (e) => {
-
 if (e.target.nodeName === "BUTTON") {
     modal.classList.remove('is-open')
   }
